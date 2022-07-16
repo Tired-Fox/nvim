@@ -101,6 +101,10 @@ local mappings = {
     S = { "<cmd>PackerStatus<cr>", "Status" },
     u = { "<cmd>PackerUpdate<cr>", "Update" },
   },
+  g = {
+    name = "git",
+    l = { "<cmd>lua _LAZYGIT_TOGGLE()<cr>", "Lazygit" },
+  },
   t = {
     name = "Terminal",
     p = { "<cmd>lua _PYTHON_TOGGLE()<cr>", "Python" },
