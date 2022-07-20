@@ -15,12 +15,12 @@ local setup = {
     -- No actual key bindings are created
     presets = {
       operators = false, -- adds help for operators like d, y, ... and registers them for motion / text object completion
-      motions = true, -- adds help for motions
-      text_objects = true, -- help for text objects triggered after entering an operator
+      motions = false, -- adds help for motions
+      text_objects = false, -- help for text objects triggered after entering an operator
       windows = true, -- default bindings on <c-w>
-      nav = true, -- misc bindings to work with windows
+      nav = false, -- misc bindings to work with windows
       z = true, -- bindings for folds, spelling and others prefixed with z
-      g = true, -- bindings for prefixed with g
+      g = false, -- bindings for prefixed with g
     },
   },
   -- add operators that will trigger motion and text object completion
@@ -85,14 +85,17 @@ local mappings = {
     "Buffers",
   },
   ["c"] = { "<cmd>Bdelete!<cr>" , "Close" },
-  ["d"] = { "<cmd>lua require('telescope.builtin').diagnostics(require('telescope.themes').get_dropdown{previewer = false})<cr>", "Diagnostics" },
+  ["D"] = { "<cmd>lua require('telescope.builtin').diagnostics(require('telescope.themes').get_dropdown{previewer = false})<cr>", "Diagnostics" },
+  ["d"] = { "<cmd>lua require('telescope.builtin').diagnostics(require('telescope.themes').get_dropdown{previewer = false, bufnr = 0})<cr>", "Diagnostics" },
   ["e"] = {"<cmd>NvimTreeToggle<cr>", "Explorer" },
   ["F"] = { "<cmd>Telescope find_files<cr>", "Files" },
   ["f"] = { "<cmd>lua require('telescope.builtin').live_grep{ search_dirs={\"%:P\"}}<cr>", "find" },
+  ["h"] = { "<cmd>nohlsearch<CR>", "No HL" },
   ["n"] = { "<cmd>enew<cr>", "New Blank Buff" },
   ["s"] = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols"},
-  ["Q"] = { "<cmd>q!<cr>", "Quit" },
+  ["q"] = { "<cmd>q!<cr>", "Quit" },
   ["w"] = { "<cmd>w!<cr>", "Save" },
+  ["/"] = { '<cmd>lua require("Comment.api").toggle_current_linewise()<CR>', "Comment" },
   p = {
     name = "Packer",
     c = { "<cmd>PackerCompile<cr>", "Compile" },
@@ -130,5 +133,19 @@ local mappings = {
   }
 }
 
+local vopts = {
+  mode = "v", -- VISUAL mode
+  prefix = "<leader>",
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = true, -- use `nowait` when creating keymaps
+}
+local vmappings = {
+  ["/"] = { '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>', "Comment" },
+  s = { "<esc><cmd>'<,'>SnipRun<cr>", "Run range" },
+}
+
 which_key.setup(setup)
 which_key.register(mappings, opts)
+which_key.register(vmappings, vopts)
