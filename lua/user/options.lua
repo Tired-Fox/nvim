@@ -52,6 +52,11 @@ local configuration = {
 }
 
 vim.cmd("set fileformats+=unix")
+vim.cmd([[
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set nofoldenable
+]])
 
 -- [[ Set options ]]
 -- Options are automatically built
