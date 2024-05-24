@@ -54,27 +54,28 @@ return {
 	},
 	{
 		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
 		config = function()
-			require("harpoon").setup({})
-			local ui = require("harpoon.ui")
+			local harpoon = require("harpoon")
+			harpoon.setup({})
 
 			vim.keymap.set("n", "<space>.", function()
-				ui.toggle_quick_menu()
+				harpoon.ui:toggle_quick_menu(harpoon:list())
 			end)
 			vim.keymap.set("n", "<space>ha", function()
-				ui.add_file()
+				harpoon:list():add()
 			end)
 			vim.keymap.set("n", "<A-1>", function()
-				ui.nav_file(1)
+				harpoon:list():select(1)
 			end)
 			vim.keymap.set("n", "<A-2>", function()
-				ui.nav_file(2)
+				harpoon:list():select(2)
 			end)
 			vim.keymap.set("n", "<A-3>", function()
-				ui.nav_file(3)
+				harpoon:list():select(3)
 			end)
 			vim.keymap.set("n", "<A-4>", function()
-				ui.nav_file(4)
+				harpoon:list():select(4)
 			end)
 		end,
 	},
@@ -91,27 +92,32 @@ return {
 
 			tc.setup({
 				keywords = {
-					-- todo:
+					-- TODO:
 					FIX = {
 						icon = " ", -- icon used for the sign, and in search results
 						color = "error", -- can be a hex color, or a named color (see below)
-						alt = { "FIXME", "BUG", "FIXIT", "ISSUE", "fixme", "bug", "fixit", "issue" }, -- a set of other keywords that all map to this FIX keywords
+						alt = { "FIXME", "BUG", "FIXIT", "ISSUE" }, -- a set of other keywords that all map to this FIX keywords
 						-- signs = false,
-						-- configure signs for some keywords individually
+						-- configure signs for some keywords individually FIX this so TODO comments are not highlighted where they are a BUG
 					},
-					TODO = { icon = " ", color = "info", alt = { "TODO", "todo" } },
+					TODO = { icon = " ", color = "info", alt = { "TODO" } },
 					HACK = { icon = " ", color = "warning" },
-					WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX", "warning", "warn", "xxx" } },
+					WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
 					PERF = {
 						icon = " ",
-						alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE", "optim", "performance", "optimize" },
+						alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" },
 					},
-					NOTE = { icon = "󰌶 ", color = "hint", alt = { "INFO", "info" } },
+					NOTE = { icon = "󰌶 ", color = "hint", alt = { "INFO" } },
 					TEST = {
 						icon = "",
 						color = "test",
-						alt = { "TESTING", "PASSED", "FAILED", "test", "testing", "passed", "failed" },
+						alt = { "TESTING", "PASSED", "FAILED" },
 					},
+				},
+				highlight = {
+					before = "fg",
+					comments_only = true,
+					pattern = [[-- <(KEYWORDS)\s*:]],
 				},
 			})
 

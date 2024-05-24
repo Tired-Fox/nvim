@@ -16,6 +16,7 @@ local languages = {
 vim.defer_fn(function()
 	require("nvim-treesitter.configs").setup({
 		-- Add languages to be installed here that you want installed for treesitter
+		ignore_install = { "comment" },
 		ensure_installed = languages,
 
 		-- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)

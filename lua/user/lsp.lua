@@ -14,15 +14,21 @@ local lspconfig = require("lspconfig")
 
 local servers = {
 	bashls = true,
-	zls = true,
 	gopls = true,
 	lua_ls = true,
-	rust_analyzer = true,
 	cssls = true,
-
+	eslint = true,
+	vuels = {
+		filetypes = { "typescript", "javascript", "vue", "json" },
+		root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+	},
+	zls = {
+		filetypes = { "zig", "zon" },
+	},
 	-- Probably want to disable formatting for this lang server
-	tsserver = true,
-
+	tsserver = {
+		root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+	},
 	jsonls = {
 		settings = {
 			json = {
@@ -31,7 +37,6 @@ local servers = {
 			},
 		},
 	},
-
 	yamlls = {
 		settings = {
 			yaml = {
@@ -43,23 +48,6 @@ local servers = {
 			},
 		},
 	},
-
-	ocamllsp = {
-		manual_install = true,
-		settings = {
-			codelens = { enable = true },
-		},
-
-		filetypes = {
-			"ocaml",
-			"ocaml.interface",
-			"ocaml.menhir",
-			"ocaml.cram",
-		},
-
-		-- TODO: Check if i still need the filtypes stuff i had before
-	},
-
 	clangd = {
 		-- TODO: Could include cmd, but not sure those were all relevant flags.
 		--    looks like something i would have added while i was floundering
@@ -96,6 +84,17 @@ for name, config in pairs(servers) do
 		capabilities = capabilities,
 	}, config)
 
+	-- print(name)
+	if name == "volar" then
+		vim.tbl_deep_extend("force", config, {
+			init_options = {
+				typescript = {
+					tsdk = vim.fs.normalize("D:\\scoop\\persist\\nodejs\\bin\\node_modules\\typescript\\lib"),
+				},
+			},
+		})
+		lspconfig.volar.setup(config)
+	end
 	lspconfig[name].setup(config)
 end
 
@@ -142,3 +141,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		})
 	end,
 })
+
+local lspui_ok, lspui = pcall(require, "lspconfig.ui.windows")
+if not lspui_ok then
+	return
+end
+
+lspui.default_options.border = "rounded"

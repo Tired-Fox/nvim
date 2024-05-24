@@ -39,3 +39,13 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 	group = set_wrap,
 	pattern = "*.norg",
 })
+
+local auto_clear_command_line = vim.api.nvim_create_augroup("AutoClearCmd", { clear = true })
+vim.api.nvim_create_autocmd({ "CmdlineLeave" }, {
+	group = auto_clear_command_line,
+	callback = function()
+		vim.defer_fn(function()
+			vim.cmd([[ echon ' ' ]])
+		end, 5000)
+	end,
+})

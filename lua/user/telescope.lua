@@ -1,6 +1,24 @@
 local data = assert(vim.fn.stdpath("data")) -- [[@as string]]
 
+-- local set_telescope_trouble_entries = function(buffer) end
+--
+-- local open_in_trouble = function(prompt_bufnr)
+-- 	-- local modes = require("trouble.config").modes()
+--
+-- 	local tsrc = require("trouble.sources.telescope")
+-- 	tsrc.items = {}
+-- 	tsrc.add(prompt_bufnr)
+-- 	require("trouble.api").open("preview_float")
+-- 	require("trouble.sources.telescope").open(prompt_bufnr)
+-- end
+
 require("telescope").setup({
+	-- defaults = {
+	-- 	mappings = {
+	-- 		i = { ["<c-t>"] = open_in_trouble },
+	-- 		n = { ["<c-t>"] = open_in_trouble },
+	-- 	},
+	-- },
 	extensions = {
 		fzf = {},
 		history = {
