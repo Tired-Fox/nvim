@@ -18,6 +18,9 @@ return {
 			"sindrets/diffview.nvim", -- optional - Diff integration
 			"telescope",
 		},
+		keys = {
+			{ "<space>g", "<cmd>Neogit<cr>", "Neogit" },
+		},
 		config = true,
 	},
 }
