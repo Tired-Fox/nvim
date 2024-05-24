@@ -98,9 +98,21 @@ for name, config in pairs(servers) do
 	lspconfig[name].setup(config)
 end
 
-local disable_semantic_tokens = {
-	lua = true,
-}
+-- Change diagnostic symbols
+local signs = { Error = "", Warn = "", Hint = "󰌶", Info = "" }
+for type, icon in pairs(signs) do
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
+
+-- Turn off virtual text diagnostic
+vim.diagnostic.config({
+	virtual_text = false,
+	underline = true,
+	float = {
+		border = "rounded",
+	},
+})
 
 --- @class Options
 --- @field inlay_hints boolean
@@ -134,6 +146,10 @@ local setup_inlay_hints = function(args)
 		end
 	end
 end
+
+local disable_semantic_tokens = {
+	lua = true,
+}
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
