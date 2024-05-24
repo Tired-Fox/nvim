@@ -102,6 +102,39 @@ local disable_semantic_tokens = {
 	lua = true,
 }
 
+--- @class Options
+--- @field inlay_hints boolean
+local Options = {}
+
+--- @class table<K, V>: { [K]: Options }
+local defaults_by_filetype = {
+	rust = {
+		inlayHints = false,
+	},
+}
+
+vim.cmd.highlight("default link LspInlayHint Comment")
+
+local setup_inlay_hints = function(args)
+	local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+	if client.supports_method("textDocument/inlayHint") or client.capabilities.inlayHintProvider then
+		-- Setup commands
+		vim.api.nvim_buf_create_user_command(args.buf, "InlayHintsToggle", function()
+			vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = args.buf }), { bufnr = args.buf })
+		end, {})
+		vim.api.nvim_buf_create_user_command(args.buf, "InlayHintsEnabled", function()
+			vim.print(vim.lsp.inlay_hint.is_enabled({ bufnr = args.buf }))
+		end, {})
+
+		vim.keymap.set("n", "<space>lh", "<cmd>InlayHintsToggle<cr>", { silent = true, desc = "Toggle inlay hints" })
+
+		if defaults_by_filetype[vim.bo.filetype] then
+			vim.lsp.inlay_hint.enable(defaults_by_filetype[vim.bo.filetype].inlayHints or false, { bufnr = args.buf })
+		end
+	end
+end
+
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		local bufnr = args.buf
@@ -122,6 +155,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		if disable_semantic_tokens[filetype] then
 			client.server_capabilities.semanticTokensProvider = nil
 		end
+
+		setup_inlay_hints(args)
 	end,
 })
 
