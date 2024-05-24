@@ -9,6 +9,9 @@ local configuration = {
 		-- Set tab look
 		tabstop = 4,
 		shiftwidth = 4,
+		autoindent = true,
+		smartindent = true,
+		cindent = true,
 		-- set number line width {defaults to 4}
 		numberwidth = 3,
 		backup = false,

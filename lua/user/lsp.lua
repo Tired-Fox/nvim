@@ -18,6 +18,32 @@ local servers = {
 	lua_ls = true,
 	cssls = true,
 	eslint = true,
+	jdtls = {
+		root_dir = lspconfig.util.root_pattern(".git", "pom.xml", "gulpfile.js", "package.json"),
+		settings = {
+			java = {
+				inlayHints = {
+					parameterNames = {
+						enabled = "all",
+						exclusions = {},
+					},
+				},
+				format = {
+					enabled = true,
+					comments = { enabled = true },
+					insertSpaces = true,
+					tabSize = 2,
+					settings = {
+						-- Use Google Java style guidelines for formatting
+						-- To use, make sure to download the file from https://github.com/google/styleguide/blob/gh-pages/eclipse-java-google-style.xml
+						-- and place it in the ~/.local/share/eclipse directory
+						url = "/.local/share/eclipse/eclipse-java-google-style.xml",
+						profile = "GoogleStyle",
+					},
+				},
+			},
+		},
+	},
 	vuels = {
 		filetypes = { "typescript", "javascript", "vue", "json" },
 		root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
