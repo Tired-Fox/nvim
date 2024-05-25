@@ -1,32 +1,16 @@
-local data = assert(vim.fn.stdpath("data")) -- [[@as string]]
-
--- local set_telescope_trouble_entries = function(buffer) end
---
--- local open_in_trouble = function(prompt_bufnr)
--- 	-- local modes = require("trouble.config").modes()
---
--- 	local tsrc = require("trouble.sources.telescope")
--- 	tsrc.items = {}
--- 	tsrc.add(prompt_bufnr)
--- 	require("trouble.api").open("preview_float")
--- 	require("trouble.sources.telescope").open(prompt_bufnr)
--- end
-
 require("telescope").setup({
-	-- defaults = {
-	-- 	mappings = {
-	-- 		i = { ["<c-t>"] = open_in_trouble },
-	-- 		n = { ["<c-t>"] = open_in_trouble },
-	-- 	},
-	-- },
 	extensions = {
-		fzf = {},
-		history = {
-			path = vim.fs.joinpath(data, "telescope_history.sqlite3"),
-			limit = 100,
+		frecency = {
+			workspaces = {
+				["nconf"] = vim.fn.stdpath("config"),
+				["ndata"] = vim.fn.stdpath("data"),
+			},
 		},
 	},
 	pickers = {
+		frecency = {
+			theme = "dropdown",
+		},
 		find_files = {
 			theme = "dropdown",
 			previewer = false,
@@ -40,18 +24,27 @@ require("telescope").setup({
 		live_grep = {
 			theme = "dropdown",
 		},
+		oldfiles = {
+			theme = "dropdown",
+		},
 	},
 })
 
-pcall(require("telescope").load_extension, "fzf")
-pcall(require("telescope").load_extension, "smart_history")
+pcall(require("telescope").load_extension, "fzy_native")
+pcall(require("telescope").load_extension, "frecency")
 
 local builtin = require("telescope.builtin")
 
-vim.keymap.set("n", "<space>ff", builtin.find_files)
+vim.keymap.set("n", "<space>ff", function()
+	require("telescope").extensions.frecency.frecency(
+		require("telescope.themes").get_dropdown({ previewer = false, prompt_title = "Find Files" })
+	)
+end)
+-- vim.keymap.set("n", "<space>ff", builtin.find_files)
 vim.keymap.set("n", "<space>fh", builtin.help_tags)
 vim.keymap.set("n", "<space>fg", builtin.live_grep)
 vim.keymap.set("n", "<space>/", builtin.current_buffer_fuzzy_find)
+vim.keymap.set("n", "<space>?", builtin.oldfiles)
 
 vim.keymap.set("n", "<space>gw", builtin.grep_string)
 

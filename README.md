@@ -6,5 +6,7 @@
         - `zls` with `zvm`
         - `node` with `fnm`
     - [fzf](https://github.com/junegunn/fzf)
-    - ripgrep: with `cargo install`
+    - `cargo install` packages
+        - ripgrep
+        - fd-find
 

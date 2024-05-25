@@ -4,8 +4,8 @@ return {
 	name = "telescope",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		"nvim-telescope/telescope-smart-history.nvim",
-		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		"nvim-telescope/telescope-fzy-native.nvim",
+		"nvim-telescope/telescope-frecency.nvim",
 	},
 	config = function()
 		require("user.telescope")
