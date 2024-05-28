@@ -1,3 +1,4 @@
+local icons = require("user.icons")
 require("neodev").setup({
 	-- library = {
 	--   plugins = { "nvim-dap-ui" },
@@ -14,6 +15,7 @@ local lspconfig = require("lspconfig")
 
 local servers = {
 	bashls = true,
+	pyright = true,
 	gopls = true,
 	lua_ls = true,
 	cssls = true,
@@ -45,8 +47,52 @@ local servers = {
 		},
 	},
 	vuels = {
-		filetypes = { "typescript", "javascript", "vue", "json" },
+		filetypes = { "vue" },
 		root_dir = lspconfig.util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+		init_options = {
+			config = {
+				css = {},
+				emmet = {},
+				html = {
+					suggest = {},
+				},
+				javascript = {
+					format = {},
+				},
+				stylusSupremacy = {},
+				typescript = {
+					format = {},
+				},
+				vetur = {
+					completion = {
+						autoImport = true,
+						tagCasing = "kebab",
+						useScaffoldSnippets = false,
+					},
+					format = {
+						defaultFormatter = {
+							html = "none",
+							js = "none",
+							ts = "none",
+						},
+						defaultFormatterOptions = {},
+						scriptInitialIndent = false,
+						styleInitialIndent = false,
+					},
+					useWorkspaceDependencies = false,
+					validation = {
+						script = true,
+						style = true,
+						template = true,
+						templateProps = true,
+						interpolation = true,
+					},
+					experimental = {
+						templateInterpolationService = true,
+					},
+				},
+			},
+		},
 	},
 	zls = {
 		filetypes = { "zig", "zon" },
@@ -125,11 +171,27 @@ for name, config in pairs(servers) do
 end
 
 -- Change diagnostic symbols
-local signs = { Error = "", Warn = "", Hint = "󰌶", Info = "" }
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
+vim.diagnostic.config({
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = icons.diagnostic.BoldError,
+			[vim.diagnostic.severity.WARN] = icons.diagnostic.BoldWarning,
+			[vim.diagnostic.severity.HINT] = icons.diagnostic.BoldHint,
+			[vim.diagnostic.severity.INFO] = icons.diagnostic.BoldInformation,
+		},
+	},
+	virtual_text = false,
+	update_in_insert = false,
+	underline = true,
+	severity_sort = true,
+	float = {
+		focusable = true,
+		style = "minimal",
+		border = "rounded",
+		header = "",
+		prefix = "",
+	},
+})
 
 -- Turn off virtual text diagnostic
 vim.diagnostic.config({
@@ -213,7 +275,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 	callback = function(args)
 		require("conform").format({
 			bufnr = args.buf,
-			lsp_fallback = true,
+			lsp_fallback = false,
 			quiet = true,
 		})
 	end,

@@ -25,7 +25,7 @@ local configuration = {
 		hlsearch = false,
 		-- Enable mouse mode
 		mouse = "a",
-		relativenumber = true,
+		relativenumber = false,
 		-- Sync clipboard between OS and Neovim.
 		--  Remove this option if you want your OS clipboard to remain independent.
 		--  See `:help 'clipboard'`

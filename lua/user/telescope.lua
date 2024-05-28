@@ -5,6 +5,8 @@ require("telescope").setup({
 				["nconf"] = vim.fn.stdpath("config"),
 				["ndata"] = vim.fn.stdpath("data"),
 			},
+			db_safe_mode = false,
+			auto_validate = true,
 		},
 	},
 	pickers = {
@@ -30,14 +32,14 @@ require("telescope").setup({
 	},
 })
 
-pcall(require("telescope").load_extension, "fzy_native")
+-- pcall(require("telescope").load_extension, "fzy_native")
 pcall(require("telescope").load_extension, "frecency")
 
 local builtin = require("telescope.builtin")
 
 vim.keymap.set("n", "<space>ff", function()
 	require("telescope").extensions.frecency.frecency(
-		require("telescope.themes").get_dropdown({ previewer = false, prompt_title = "Find Files" })
+		require("telescope.themes").get_dropdown({ previewer = false, prompt_title = "Find Files", workspace = "CWD" })
 	)
 end)
 -- vim.keymap.set("n", "<space>ff", builtin.find_files)

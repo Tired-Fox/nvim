@@ -1,57 +1,83 @@
-vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
-vim.opt.shortmess:append 'c'
+require("user.snippet")
 
-local lspkind = require 'lspkind'
-lspkind.init {}
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+vim.opt.shortmess:append("c")
 
-local cmp = require 'cmp'
-
-cmp.setup {
-    sources = {
-	{ name = 'nvim_lsp' },
-	{ name = 'path' },
-	{ name = 'buffer' }
-    },
-    mapping = {
-	['<C-n>'] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
-	['<C-p>'] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
-	['<C-y>'] = cmp.mapping(
-	    cmp.mapping.confirm {
-		behavior = cmp.ConfirmBehavior.Insert,
-		select = true
-	    },
-	    { 'i', 'c' }
-	),
-    }
+local borderstyle = {
+	border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+	winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
 }
 
--- Enable luasnip expansion for nvim-cmp
-snippet = {
-    expand = function(args)
-	require('luasnip').lsp_expand(args.body)
-    end
+local sources = {
+	nvim_lsp = "[LSP]",
+	luasnip = "[Snip]",
+	buffer = "[Buff]",
+	path = "[Path]",
+	supermaven = "[AI]",
 }
 
-local ls = require 'luasnip'
-ls.config.set_config {
-    history = false,
-    updateevents = 'TextChanged,TextChangedI'
+local icons = require("user.icons")
+local lspkind = require("lspkind")
+local cmp = require("cmp")
+
+require("supermaven-nvim.completion_preview")
+
+local cmp_sources = {
+	{ name = "nvim_lsp" },
 }
 
-for _, ft_path in ipairs(vim.api.nvim_get_runtime_file('lua/user/snippets/*.lua', true)) do
-    loadfile(ft_path)()
+if require("supermaven-nvim.config").disable_inline_completion then
+	cmp_sources = vim.tbl_extend("force", cmp_sources, {
+		{ name = "supermaven" },
+	})
 end
 
--- Go forward through snippet
-vim.keymap.set({ 'i', 's' }, '<c-k>', function()
-    if ls.expand_or_jumpable() then
-	ls.expand_or_jump()
-    end
-end, { silent = true })
+cmp_sources = vim.tbl_extend("force", cmp_sources, {
+	{ name = "luasnip" },
+	{ name = "buffer" },
+	{ name = "path" },
+})
 
--- Go backward through snippet
-vim.keymap.set({ 'i', 's' }, '<c-j>', function()
-    if ls.jumpable(-1) then
-	ls.jump(-1)
-    end
-end, { silent = true})
+cmp.setup({
+	sources = cmp_sources,
+	sorting = {
+		priority_weight = 2,
+	},
+	formatting = {
+		format = lspkind.cmp_format({
+			mode = "symbol_text",
+			maxwidth = 50,
+			ellipsis_char = "",
+			show_labelDetails = false,
+			symbol_map = icons.kind,
+			before = function(entry, vim_item)
+				if sources[entry.source.name] ~= nil then
+					vim_item.menu = sources[entry.source.name]
+				else
+					vim.print("CMP missing source map for " .. entry.source.name)
+				end
+				return vim_item
+			end,
+		}),
+	},
+	mapping = {
+		["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+		["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+		["<C-y>"] = cmp.mapping(
+			cmp.mapping.confirm({
+				behavior = cmp.ConfirmBehavior.Insert,
+				select = true,
+			}),
+			{ "i", "c" }
+		),
+	},
+	snippet = {
+		expand = function(args)
+			vim.snippet.expand(args.body)
+		end,
+	},
+	window = {
+		completion = borderstyle,
+		documentation = borderstyle,
+	},
+})

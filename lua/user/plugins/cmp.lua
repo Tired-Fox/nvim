@@ -15,4 +15,19 @@ return {
 			require("user.completion")
 		end,
 	},
+	{
+		"supermaven-inc/supermaven-nvim",
+		config = function()
+			require("supermaven-nvim").setup({
+				-- These are just here for if inline completion is turned on
+				keymaps = {
+					clear_suggestion = "<c-]>",
+					accept_suggestion = "<m-y>",
+					accept_word = "<c-k>",
+				},
+				disable_inline_completion = false,
+				disable_keymaps = false,
+			})
+		end,
+	},
 }

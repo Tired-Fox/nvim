@@ -130,4 +130,16 @@ return {
 			vim.keymap.set("n", "<space>ft", "<cmd>TodoTelescope<cr>")
 		end,
 	},
+	{
+		"echasnovski/mini.bufremove",
+		config = true,
+		version = "*",
+	},
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("user.lualine")
+		end,
+	},
 }
