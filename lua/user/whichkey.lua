@@ -1,7 +1,6 @@
 local mappings = {
 	q = { "<cmd>confirm q<CR>", "Quit" },
 	["."] = { "<cmd>nohlsearch<CR>", "NOHL" },
-	b = { name = "Buffers" },
 	d = { name = "Debug" },
 	f = { name = "Find" },
 	g = { name = "Git" },

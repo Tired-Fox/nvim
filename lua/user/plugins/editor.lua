@@ -49,7 +49,7 @@ return {
 
 			vim.keymap.set("n", "]b", ui.nav_next, { desc = "Next Buffer" })
 			vim.keymap.set("n", "[b", ui.nav_prev, { desc = "Previous Buffer" })
-			vim.keymap.set("n", "<space>bb", ui.toggle_quick_menu, { desc = "Toggle Buffer Manager" })
+			vim.keymap.set("n", "<space>b", ui.toggle_quick_menu, { desc = "Toggle Buffer Manager" })
 		end,
 	},
 	{
@@ -135,9 +135,9 @@ return {
 		version = "*",
 		config = function()
 			require("mini.bufremove").setup({})
-			vim.keymap.set("n", "<space>bc", function()
+			vim.keymap.set("n", "<space>c", function()
 				require("mini.bufremove").wipeout(0)
-			end, { desc = "Close buffer" })
+			end, { desc = "Close Buffer" })
 		end,
 	},
 	{
