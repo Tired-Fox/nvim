@@ -81,4 +81,7 @@ else
 	vim.notify("Could not load ports.lua for dap java remote ports", vim.log.levels.ERROR)
 end
 
+-- Remove the quit mapping as it breaks remote debugging
+vim.keymap.del("n", "<space>dQ")
+
 return dap_config_java

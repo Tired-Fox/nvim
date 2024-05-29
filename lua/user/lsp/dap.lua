@@ -18,6 +18,11 @@ dap.listeners.before.event_exited.dapui_config = function()
 	dapui.close()
 end
 
+dap.listeners.before.event_exited.dapui_stopped = function()
+	vim.print("Terminated")
+	dapui.close()
+end
+
 vim.keymap.set("n", "<space>dt", function()
 	require("dap").toggle_breakpoint()
 end, { desc = "Toggle Breakpoint" })
@@ -54,7 +59,7 @@ end, { desc = "Toggle Dap Repl" })
 vim.keymap.set("n", "<space>ds", function()
 	require("dap").continue()
 end, { desc = "Start Dap" })
-vim.keymap.set("n", "<space>dq", function()
+vim.keymap.set("n", "<space>dQ", function()
 	require("dap").close()
 end, { desc = "Quit Dap" })
 vim.keymap.set("n", "<space>dU", function()
