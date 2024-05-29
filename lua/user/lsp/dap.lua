@@ -1,0 +1,68 @@
+local dap = require("dap")
+local dapui = require("dapui")
+dapui.setup()
+
+dap.listeners.before.attach.dapui_config = function()
+	dapui.open()
+end
+
+dap.listeners.before.launch.dapui_config = function()
+	dapui.open()
+end
+
+dap.listeners.before.event_terminated.dapui_config = function()
+	dapui.close()
+end
+
+dap.listeners.before.event_exited.dapui_config = function()
+	dapui.close()
+end
+
+vim.keymap.set("n", "<space>dt", function()
+	require("dap").toggle_breakpoint()
+end, { desc = "Toggle Breakpoint" })
+vim.keymap.set("n", "<space>db", function()
+	require("dap").step_back()
+end, { desc = "Step Back" })
+vim.keymap.set("n", "<space>dc", function()
+	require("dap").continue()
+end, { desc = "Continue Dap" })
+vim.keymap.set("n", "<space>dC", function()
+	require("dap").run_to_cursor()
+end, { desc = "Run To Cursor" })
+vim.keymap.set("n", "<space>dd", function()
+	require("dap").disconnect()
+end, { desc = "Disconnect Dap" })
+vim.keymap.set("n", "<space>dg", function()
+	require("dap").session()
+end, { desc = "Get Dap Session" })
+vim.keymap.set("n", "<space>di", function()
+	require("dap").step_into()
+end, { desc = "Step Into" })
+vim.keymap.set("n", "<space>do", function()
+	require("dap").step_over()
+end, { desc = "Step Over" })
+vim.keymap.set("n", "<space>du", function()
+	require("dap").step_out()
+end, { desc = "Step Out" })
+vim.keymap.set("n", "<space>dp", function()
+	require("dap").pause()
+end, { desc = "Pause Dap" })
+vim.keymap.set("n", "<space>dr", function()
+	require("dap").repl.toggle()
+end, { desc = "Toggle Dap Repl" })
+vim.keymap.set("n", "<space>ds", function()
+	require("dap").continue()
+end, { desc = "Start Dap" })
+vim.keymap.set("n", "<space>dq", function()
+	require("dap").close()
+end, { desc = "Quit Dap" })
+vim.keymap.set("n", "<space>dU", function()
+	require("dapui").toggle({ reset = true })
+end, { desc = "Toggle Dap UI" })
+
+local sign = vim.fn.sign_define
+
+sign("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
+sign("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
+sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })

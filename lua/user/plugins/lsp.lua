@@ -8,6 +8,10 @@ return {
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 			"mfussenegger/nvim-dap",
+			{
+				"rcarriga/nvim-dap-ui",
+				dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+			},
 			"jay-babu/mason-nvim-dap.nvim",
 
 			-- Display lsp logs in fancy output at bottom right
@@ -27,6 +31,7 @@ return {
 		"mfussenegger/nvim-jdtls",
 		ft = { "java" },
 		dependencies = {
+			"telescope",
 			"williamboman/mason-lspconfig.nvim",
 		},
 		--- @reference: https://github.com/AstroNvim/astrocommunity/blob/main/lua/astrocommunity/pack/java/init.lua
@@ -70,7 +75,20 @@ return {
 				settings = {
 					java = {
 						eclipse = { downloadSources = true },
-						configuration = { updateBuildConfiguration = "interactive" },
+						configuration = {
+							updateBuildConfiguration = "interactive",
+							runtimes = {
+								{
+									name = "JavaSE-1.8",
+									path = "C:\\Java\\jdk-8u161",
+									default = true,
+								},
+								{
+									name = "JavaSE-21",
+									path = "D:\\scoop\\apps\\oraclejdk-lts\\21.0.2",
+								},
+							},
+						},
 						maven = { downloadSources = true },
 						implementationsCodeLens = { enabled = true },
 						referencesCodeLens = { enabled = true },
@@ -112,6 +130,18 @@ return {
 			}, opts)
 		end,
 		config = function(_, opts)
+			local ports = require("user.lsp.jdtls")
+			local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+
+			if ports[project_name] ~= nil then
+				local dap = require("dap")
+				if dap.configurations.java == nil then
+					dap.configurations.java = { ports[project_name] }
+				else
+					table.insert(dap.configurations.java, ports[project_name])
+				end
+			end
+
 			-- setup autocmd on filetype detect java
 			vim.api.nvim_create_autocmd("Filetype", {
 				pattern = "java", -- autocmd to start jdtls

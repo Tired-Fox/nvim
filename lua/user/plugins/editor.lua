@@ -47,9 +47,9 @@ return {
 				},
 			})
 
-			vim.keymap.set("n", "]b", ui.nav_next)
-			vim.keymap.set("n", "[b", ui.nav_prev)
-			vim.keymap.set("n", "<space>b", ui.toggle_quick_menu)
+			vim.keymap.set("n", "]b", ui.nav_next, { desc = "Next Buffer" })
+			vim.keymap.set("n", "[b", ui.nav_prev, { desc = "Previous Buffer" })
+			vim.keymap.set("n", "<space>bb", ui.toggle_quick_menu, { desc = "Toggle Buffer Manager" })
 		end,
 	},
 	{
@@ -59,24 +59,24 @@ return {
 			local harpoon = require("harpoon")
 			harpoon.setup({})
 
-			vim.keymap.set("n", "<space>.", function()
+			vim.keymap.set("n", "<space>hh", function()
 				harpoon.ui:toggle_quick_menu(harpoon:list())
-			end)
+			end, { desc = "Toggle Harpoon Quick Menu" })
 			vim.keymap.set("n", "<space>ha", function()
 				harpoon:list():add()
-			end)
+			end, { desc = "Add Buffer to Harpoon" })
 			vim.keymap.set("n", "<A-1>", function()
 				harpoon:list():select(1)
-			end)
+			end, { desc = "Select Harppon 1" })
 			vim.keymap.set("n", "<A-2>", function()
 				harpoon:list():select(2)
-			end)
+			end, { desc = "Select Harpoon 2" })
 			vim.keymap.set("n", "<A-3>", function()
 				harpoon:list():select(3)
-			end)
+			end, { desc = "Select Harpoon 3" })
 			vim.keymap.set("n", "<A-4>", function()
 				harpoon:list():select(4)
-			end)
+			end, { desc = "Select Harpoon 4" })
 		end,
 	},
 	"kevinhwang91/nvim-bqf",
@@ -123,23 +123,35 @@ return {
 
 			vim.keymap.set("n", "]t", function()
 				tc.jump_next({ keywords = { "TODO", "FIX", "TEST" } })
-			end)
+			end, { desc = "Next Todo" })
 			vim.keymap.set("n", "[t", function()
 				tc.jump_prev({ keywords = { "TODO", "FIX", "TEST" } })
-			end)
-			vim.keymap.set("n", "<space>ft", "<cmd>TodoTelescope<cr>")
+			end, { desc = "Previous Todo" })
+			vim.keymap.set("n", "<space>ft", "<cmd>TodoTelescope<cr>", { desc = "Todo Telescope" })
 		end,
 	},
 	{
 		"echasnovski/mini.bufremove",
-		config = true,
 		version = "*",
+		config = function()
+			require("mini.bufremove").setup({})
+			vim.keymap.set("n", "<space>bc", function()
+				require("mini.bufremove").wipeout(0)
+			end, { desc = "Close buffer" })
+		end,
 	},
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			require("user.lualine")
+		end,
+	},
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("user.whichkey")
 		end,
 	},
 }

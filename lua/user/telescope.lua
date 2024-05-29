@@ -2,8 +2,8 @@ require("telescope").setup({
 	extensions = {
 		frecency = {
 			workspaces = {
-				["nconf"] = vim.fn.stdpath("config"),
-				["ndata"] = vim.fn.stdpath("data"),
+				["conf"] = vim.fn.stdpath("config"),
+				["data"] = vim.fn.stdpath("data"),
 			},
 			db_safe_mode = false,
 			auto_validate = true,
@@ -41,19 +41,19 @@ vim.keymap.set("n", "<space>ff", function()
 	require("telescope").extensions.frecency.frecency(
 		require("telescope.themes").get_dropdown({ previewer = false, prompt_title = "Find Files", workspace = "CWD" })
 	)
-end)
+end, { desc = "Find Files" })
 -- vim.keymap.set("n", "<space>ff", builtin.find_files)
-vim.keymap.set("n", "<space>fh", builtin.help_tags)
-vim.keymap.set("n", "<space>fg", builtin.live_grep)
-vim.keymap.set("n", "<space>/", builtin.current_buffer_fuzzy_find)
-vim.keymap.set("n", "<space>?", builtin.oldfiles)
+vim.keymap.set("n", "<space>fh", builtin.help_tags, { desc = "Help Tags" })
+vim.keymap.set("n", "<space>fg", builtin.live_grep, { desc = "Live Grep" })
+vim.keymap.set("n", "<space>/", builtin.current_buffer_fuzzy_find, { desc = "Current Buffer Fuzzy Find" })
+vim.keymap.set("n", "<space>?", builtin.oldfiles, { desc = "Old Files" })
 
-vim.keymap.set("n", "<space>gw", builtin.grep_string)
+vim.keymap.set("n", "<space>gw", builtin.grep_string, { desc = "Grep String" })
 
-vim.keymap.set("n", "<space>fa", function()
-	builtin.find_files({ cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy") })
-end)
+-- vim.keymap.set("n", "<space>fa", function()
+-- 	builtin.find_files({ cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy") })
+-- end, { desc = "Find Nvim Data Files" })
 
-vim.keymap.set("n", "<space>en", function()
-	builtin.find_files({ cwd = vim.fn.stdpath("config") })
-end)
+-- vim.keymap.set("n", "<space>en", function()
+-- 	builtin.find_files({ cwd = vim.fn.stdpath("config") })
+-- end, { desc = "Find Nvim Config Files" })
