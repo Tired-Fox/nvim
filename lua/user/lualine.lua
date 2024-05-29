@@ -1,4 +1,4 @@
-local icons = require("user.icons")
+local icons = require("user").icons
 local ll = require("lualine")
 
 local mode = {

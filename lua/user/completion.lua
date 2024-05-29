@@ -1,12 +1,7 @@
-require("user.snippet")
+require("user.snippets")
 
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.shortmess:append("c")
-
-local borderstyle = {
-	border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-	winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
-}
 
 local sources = {
 	nvim_lsp = "[LSP]",
@@ -16,7 +11,9 @@ local sources = {
 	supermaven = "[AI]",
 }
 
-local icons = require("user.icons")
+local icons = require("user").icons
+local borderstyle = require("user").borderstyle
+
 local lspkind = require("lspkind")
 local cmp = require("cmp")
 
