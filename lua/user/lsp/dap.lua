@@ -1,6 +1,36 @@
 local dap = require("dap")
 local dapui = require("dapui")
-dapui.setup()
+--- @diagnostic disable: missing-fields
+dapui.setup({
+	floating = {
+		border = "rounded",
+	},
+	layouts = {
+		{
+			elements = {
+				{
+					id = "scopes",
+					size = 0.25,
+				},
+				{
+					id = "breakpoints",
+					size = 0.25,
+				},
+				{
+					id = "stacks",
+					size = 0.25,
+				},
+				{
+					id = "watches",
+					size = 0.25,
+				},
+			},
+			position = "left",
+			size = 40,
+		},
+	},
+})
+--- @diagnostic enable: missing-fields
 
 dap.listeners.before.attach.dapui_config = function()
 	dapui.open()
@@ -54,7 +84,7 @@ vim.keymap.set("n", "<space>dp", function()
 	require("dap").pause()
 end, { desc = "Pause Dap" })
 vim.keymap.set("n", "<space>dr", function()
-	require("dap").repl.toggle()
+	require("dapui").float_element("repl", { enter = true })
 end, { desc = "Toggle Dap Repl" })
 vim.keymap.set("n", "<space>ds", function()
 	require("dap").continue()

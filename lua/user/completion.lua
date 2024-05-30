@@ -1,5 +1,7 @@
 require("user.snippets")
 
+local merge_lists = require("user").merge_lists
+
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 vim.opt.shortmess:append("c")
 
@@ -9,6 +11,7 @@ local sources = {
 	buffer = "[Buff]",
 	path = "[Path]",
 	supermaven = "[AI]",
+	["cmp-dbee"] = "[DB]",
 }
 
 local icons = require("user").icons
@@ -24,12 +27,12 @@ local cmp_sources = {
 }
 
 if require("supermaven-nvim.config").disable_inline_completion then
-	cmp_sources = vim.tbl_extend("force", cmp_sources, {
+	cmp_sources = merge_lists(cmp_sources, {
 		{ name = "supermaven" },
 	})
 end
 
-cmp_sources = vim.tbl_extend("force", cmp_sources, {
+cmp_sources = merge_lists(cmp_sources, {
 	{ name = "luasnip" },
 	{ name = "buffer" },
 	{ name = "path" },
@@ -76,5 +79,13 @@ cmp.setup({
 	window = {
 		completion = borderstyle,
 		documentation = borderstyle,
+	},
+})
+
+-- Setup up vim-dadbod
+cmp.setup.filetype({ "sql" }, {
+	sources = {
+		{ name = "cmp-dbee" },
+		{ name = "buffer" },
 	},
 })

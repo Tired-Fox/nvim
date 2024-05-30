@@ -49,3 +49,12 @@ vim.api.nvim_create_autocmd({ "CmdlineLeave" }, {
 		end, 5000)
 	end,
 })
+
+local dadbod_output = vim.api.nvim_create_augroup("DadBodOutput", { clear = true })
+vim.api.nvim_create_autocmd({ "BufReadPost" }, {
+	group = dadbod_output,
+	pattern = "*.dbout",
+	callback = function()
+		vim.g.last_dadbod_file = vim.fn.expand("%:p")
+	end,
+})

@@ -72,7 +72,7 @@ if ports_ok then
 		dap_config_java[name] = {
 			type = "java",
 			request = "attach",
-			name = "Debug (Attach) - Remote",
+			name = "Debug Remote JVM (Attach: " .. port .. ")",
 			hostName = "127.0.0.1",
 			port = port,
 		}
