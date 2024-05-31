@@ -56,6 +56,10 @@ cmp.setup({
 				else
 					vim.print("CMP missing source map for " .. entry.source.name)
 				end
+
+				if entry.source.name == "cmp-dbee" then
+					vim_item.kind = vim_item.kind:sub(1, 1):upper() .. vim_item.kind:sub(2):lower()
+				end
 				return vim_item
 			end,
 		}),

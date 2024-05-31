@@ -49,6 +49,7 @@
   "telescope-frecency.nvim": { "branch": "master", "commit": "8783a062f76ffa2c328fa98288a404f478d78908" },
   "telescope-fzy-native.nvim": { "branch": "master", "commit": "282f069504515eec762ab6d6c89903377252bf5b" },
   "todo-comments.nvim": { "branch": "main", "commit": "e1549807066947818113a7d7ed48f637e49620d3" },
+  "trouble.nvim": { "branch": "main", "commit": "4eaaf9cf8b967010998ccfc4af525b3e6d70b8b5" },
   "vim-fugitive": { "branch": "master", "commit": "4f59455d2388e113bd510e85b310d15b9228ca0d" },
   "vim-rhubarb": { "branch": "master", "commit": "ee69335de176d9325267b0fd2597a22901d927b1" },
   "vim-sleuth": { "branch": "master", "commit": "1cc4557420f215d02c4d2645a748a816c220e99b" },

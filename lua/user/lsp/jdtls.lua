@@ -36,7 +36,7 @@ function JavaRuntimes(opts)
 				end,
 			}),
 			sorter = conf.generic_sorter(opts),
-			attach_mappings = function(prompt_bufnr, map)
+			attach_mappings = function(prompt_bufnr)
 				actions.select_default:replace(function()
 					actions.close(prompt_bufnr)
 					local selection = action_state.get_selected_entry()
@@ -54,7 +54,7 @@ end
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	pattern = "*.java",
-	callback = function(args)
+	callback = function()
 		vim.keymap.set("n", "<space>tm", function()
 			jdtls.test_nearest_method()
 		end, { buffer = 0, desc = "Test nearest method" })

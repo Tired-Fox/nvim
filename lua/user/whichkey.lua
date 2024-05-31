@@ -1,5 +1,5 @@
 local mappings = {
-	q = { "<cmd>confirm q<CR>", "Quit" },
+	-- q = { "<cmd>confirm q<CR>", "Quit" },
 	["."] = { "<cmd>nohlsearch<CR>", "NOHL" },
 	d = { name = "Debug" },
 	f = { name = "Find" },

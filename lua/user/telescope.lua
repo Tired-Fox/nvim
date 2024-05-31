@@ -1,4 +1,22 @@
+local open_with_trouble = function(bufnr)
+	require("trouble.sources.telescope").open(bufnr, {
+		focus = true,
+		preview = {
+			type = "split",
+			relative = "win",
+			position = "right",
+			size = 0.4,
+		},
+	})
+end
+
 require("telescope").setup({
+	defaults = {
+		mappings = {
+			i = { ["<c-t>"] = open_with_trouble },
+			n = { ["<c-t>"] = open_with_trouble },
+		},
+	},
 	extensions = {
 		frecency = {
 			workspaces = {

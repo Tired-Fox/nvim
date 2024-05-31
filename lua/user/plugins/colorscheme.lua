@@ -27,9 +27,9 @@ return {
 					telescope = {
 						enabled = true,
 					},
-					-- lsp_trouble = true,
+					lsp_trouble = true,
 					gitsigns = true,
-					-- which_key = true,
+					which_key = true,
 					mason = true,
 					native_lsp = {
 						enabled = true,
