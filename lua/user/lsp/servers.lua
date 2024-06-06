@@ -21,6 +21,7 @@ local servers = {
 
 local tools = {
 	stylua = true,
+	codelldb = true,
 	lua_ls = true,
 	delve = true,
 	lemminx = true,
