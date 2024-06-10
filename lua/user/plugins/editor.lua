@@ -114,11 +114,6 @@ return {
 						alt = { "TESTING", "PASSED", "FAILED" },
 					},
 				},
-				highlight = {
-					before = "fg",
-					comments_only = true,
-					pattern = [[-- <(KEYWORDS)\s*:]],
-				},
 			})
 
 			vim.keymap.set("n", "]t", function()
