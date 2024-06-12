@@ -31,12 +31,12 @@ end
 vim.snippet.stop = ls.unlink_current
 
 -- Go forward through snippet
-vim.keymap.set({ "i", "s" }, "<c-k>", function()
+vim.keymap.set({ "i", "s" }, "<A-k>", function()
 	return vim.snippet.active({ direction = 1 }) and vim.snippet.jump(1)
 end, { silent = true, desc = "Snippet Jump Forward" })
 
 -- Go backward through snippet
-vim.keymap.set({ "i", "s" }, "<c-j>", function()
+vim.keymap.set({ "i", "s" }, "<A-j>", function()
 	return vim.snippet.active({ direction = -1 }) and vim.snippet.jump(-1)
 end, { silent = true, desc = "Snippet Jump Backward" })
 

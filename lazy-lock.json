@@ -43,6 +43,7 @@
   "oil.nvim": { "branch": "master", "commit": "2cb39e838e9dcd8b374f09a3a87a2e5ec9d372f6" },
   "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
   "rustaceanvim": { "branch": "master", "commit": "e306c742bd7f7183e371cd91268b72d9db1bbae0" },
+  "smart-splits.nvim": { "branch": "master", "commit": "d99162711fa619595b8cb0e1f0981e3d301debc9" },
   "supermaven-nvim": { "branch": "main", "commit": "264768c6b2a2e0480868e9dae443112e33b1484a" },
   "telescope": { "branch": "master", "commit": "a0bbec21143c7bc5f8bb02e0005fa0b982edc026" },
   "telescope-frecency.nvim": { "branch": "master", "commit": "8783a062f76ffa2c328fa98288a404f478d78908" },

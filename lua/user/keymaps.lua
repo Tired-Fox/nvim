@@ -8,19 +8,6 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Use ctrl-[hjkl] to select the active split!
-vim.keymap.set({ "n", "v", "i" }, "<c-a-j>", "<c-w>j", { silent = true })
-vim.keymap.set({ "n", "v", "i" }, "<c-a-h>", "<c-w>h", { silent = true })
-vim.keymap.set({ "n", "v", "i" }, "<c-a-k>", "<c-w>k", { silent = true })
-vim.keymap.set({ "n", "v", "i" }, "<c-a-l>", "<c-w>l", { silent = true })
--- vim.keymap.set({ "n", "v", "i" }, "<m-tab>", "<c-6>", { silent = true })
-
--- Better split resizing
--- vim.keymap.set({ "n", "v", "i" }, "<m><", "<c-w><", { silent = true })
--- vim.keymap.set({ "n", "v", "i" }, "<m>>", "<c-w>>", { silent = true })
--- vim.keymap.set({ "n", "v", "i" }, "<m-+>", "<c-w>+", { silent = true })
--- vim.keymap.set({ "n", "v", "i" }, "<m-->", "<c-w>-", { silent = true })
-
 -- Move line or selection up and down
 vim.keymap.set("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move selection down" })
 vim.keymap.set("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move selection down" })
@@ -33,7 +20,7 @@ vim.keymap.set("i", "<A-k>", "<ESC>:m .-2<cr>==gi", { desc = "Move selection dow
 vim.keymap.set("v", ">", ">gv", { desc = "Indent Selection" })
 vim.keymap.set("v", "<", "<gv", { desc = "Dedent Selection" })
 
--- vim.keymap.set("n", "<space>q", "<cmd>q<cr>", { desc = "Quit" })
+vim.keymap.set("n", "<space>q", "<cmd>q<cr>", { desc = "Quit" })
 
 -- Diagnostic keymaps
 -- note: neovim v0.10 these are defaults
