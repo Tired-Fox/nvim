@@ -12,7 +12,23 @@ return {
 		end,
 	},
 	{
+		"sindrets/diffview.nvim",
+		config = function()
+			require("diffview").setup({
+				view = {
+					merge_tool = {
+						layout = "diff3_mixed",
+						disable_diagnostics = true,
+						winbar_info = true,
+					},
+				},
+				hooks = {},
+			})
+		end,
+	},
+	{
 		"NeogitOrg/neogit",
+		enabled = false,
 		dependencies = {
 			"nvim-lua/plenary.nvim", -- required
 			"sindrets/diffview.nvim", -- optional - Diff integration

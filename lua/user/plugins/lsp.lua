@@ -209,19 +209,31 @@ return {
 			vim.g.rustaceanvim = {
 				tools = {
 					hover_actions = {
-						auto_focus = true,
+						replace_builtin_hover = true,
+						auto_focus = false,
 					},
 					-- ref: api-win_config
-					float_win_config = {},
+					float_win_config = {
+						border = "rounded",
+					},
 				},
 				server = {
-					settings = {
-						["rust-analyzer"] = {
-							checkOnSave = {
-								command = "clippy",
+					settings = function(proj_root)
+						local ra = require("rustaceanvim.config.server")
+						return vim.tbl_deep_extend(
+							"force",
+							{
+								["rust-analyzer"] = {
+									checkOnSave = {
+										command = "clippy",
+									},
+								},
 							},
-						},
-					},
+							ra.load_rust_analyzer_settings(proj_root, {
+								settings_file_pattern = "rust-analyzer.json",
+							})
+						)
+					end,
 				},
 				dap = {
 					adapter = cfg.get_codelldb_adapter(codelldb_path, liblldb_path),
