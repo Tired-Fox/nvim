@@ -18,6 +18,7 @@ local configuration = {
 		undofile = true, -- enable persistent undo
 		swapfile = false,
 		writebackup = false,
+		splitright = true,
 	},
 	o = {
 		cmdheight = 1,

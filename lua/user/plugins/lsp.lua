@@ -241,4 +241,20 @@ return {
 			}
 		end,
 	},
+	{
+		"nvim-pack/nvim-spectre",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons",
+		},
+		config = function()
+			require("spectre").setup({
+				-- open_cmd = "vsplit",
+			})
+
+			vim.keymap.set("n", "<space>S", '<cmd>lua require("spectre").toggle()<CR>', {
+				desc = "Toggle Spectre",
+			})
+		end,
+	},
 }
