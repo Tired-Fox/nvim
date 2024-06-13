@@ -55,28 +55,53 @@ return {
 	{
 		"ThePrimeagen/harpoon",
 		branch = "harpoon2",
+		keys = {
+			{
+				"<space>hh",
+				function()
+					require("harpoon").ui:toggle_quick_menu(require("harpoon"):list())
+				end,
+				desc = "Toggle Harpoon Quick Menu",
+			},
+			{
+				"<space>ha",
+				function()
+					require("harpoon"):list():add()
+				end,
+				desc = "Add Buffer to Harpoon",
+			},
+			{
+				"<A-1>",
+				function()
+					require("harpoon"):list():select(1)
+				end,
+				desc = "Select Harppon 1",
+			},
+			{
+				"<A-2>",
+				function()
+					require("harpoon"):list():select(2)
+				end,
+				desc = "Select Harpoon 2",
+			},
+			{
+				"<A-3>",
+				function()
+					require("harpoon"):list():select(3)
+				end,
+				desc = "Select Harpoon 3",
+			},
+			{
+				"<A-4>",
+				function()
+					require("harpoon"):list():select(4)
+				end,
+				desc = "Select Harpoon 4",
+			},
+		},
 		config = function()
 			local harpoon = require("harpoon")
 			harpoon.setup({})
-
-			vim.keymap.set("n", "<space>hh", function()
-				harpoon.ui:toggle_quick_menu(harpoon:list())
-			end, { desc = "Toggle Harpoon Quick Menu" })
-			vim.keymap.set("n", "<space>ha", function()
-				harpoon:list():add()
-			end, { desc = "Add Buffer to Harpoon" })
-			vim.keymap.set("n", "<A-1>", function()
-				harpoon:list():select(1)
-			end, { desc = "Select Harppon 1" })
-			vim.keymap.set("n", "<A-2>", function()
-				harpoon:list():select(2)
-			end, { desc = "Select Harpoon 2" })
-			vim.keymap.set("n", "<A-3>", function()
-				harpoon:list():select(3)
-			end, { desc = "Select Harpoon 3" })
-			vim.keymap.set("n", "<A-4>", function()
-				harpoon:list():select(4)
-			end, { desc = "Select Harpoon 4" })
 		end,
 	},
 	"kevinhwang91/nvim-bqf",
@@ -195,6 +220,7 @@ return {
 	},
 	{
 		"mrjones2014/smart-splits.nvim",
+		cmd = { "BufNew" },
 		config = function()
 			-- recommended mappings
 			-- resizing splits

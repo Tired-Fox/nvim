@@ -1,6 +1,7 @@
 return {
 	{
 		"lewis6991/gitsigns.nvim",
+		event = "BufWinEnter",
 		dependencies = {
 			-- Git commands in nvim commands
 			"tpope/vim-fugitive",
@@ -13,6 +14,7 @@ return {
 	},
 	{
 		"sindrets/diffview.nvim",
+		cmd = "DiffviewOpen",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			require("diffview").setup({

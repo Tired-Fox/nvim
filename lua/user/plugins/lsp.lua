@@ -1,5 +1,127 @@
 return {
 	{
+		"mfussenegger/nvim-dap",
+		dependencies = {
+			"jay-babu/mason-nvim-dap.nvim",
+			{
+				"rcarriga/nvim-dap-ui",
+				dependencies = {
+					"nvim-neotest/nvim-nio",
+				},
+			},
+		},
+		cmd = { "DapContinue" },
+		config = function()
+			require("user.lsp.dap")
+			-- require("neodev").setup({
+			-- 	library = {
+			-- 		plugins = { "nvim-dap-ui" },
+			-- 		types = true,
+			-- 	},
+		end,
+		-- })
+		keys = {
+			{
+				"<space>dt",
+				function()
+					require("dap").toggle_breakpoint()
+				end,
+				desc = "Toggle Breakpoint",
+			},
+			{
+				"<space>db",
+				function()
+					require("dap").step_back()
+				end,
+				desc = "Step Back",
+			},
+			{
+				"<space>dc",
+				function()
+					require("dap").continue()
+				end,
+				desc = "Continue Dap",
+			},
+			{
+				"<space>dC",
+				function()
+					require("dap").run_to_cursor()
+				end,
+				desc = "Run To Cursor",
+			},
+			{
+				"<space>dd",
+				function()
+					require("dap").disconnect()
+				end,
+				desc = "Disconnect Dap",
+			},
+			{
+				"<space>dg",
+				function()
+					require("dap").session()
+				end,
+				desc = "Get Dap Session",
+			},
+			{
+				"<space>di",
+				function()
+					require("dap").step_into()
+				end,
+				desc = "Step Into",
+			},
+			{
+				"<space>do",
+				function()
+					require("dap").step_over()
+				end,
+				desc = "Step Over",
+			},
+			{
+				"<space>du",
+				function()
+					require("dap").step_out()
+				end,
+				desc = "Step Out",
+			},
+			{
+				"<space>dp",
+				function()
+					require("dap").pause()
+				end,
+				desc = "Pause Dap",
+			},
+			{
+				"<space>dr",
+				function()
+					require("dapui").float_element("repl", { enter = true })
+				end,
+				desc = "Toggle Dap Repl",
+			},
+			{
+				"<space>ds",
+				function()
+					require("dap").continue()
+				end,
+				desc = "Start Dap",
+			},
+			{
+				"<space>dQ",
+				function()
+					require("dap").close()
+				end,
+				desc = "Quit Dap",
+			},
+			{
+				"<space>dU",
+				function()
+					require("dapui").toggle({ reset = true })
+				end,
+				desc = "Toggle Dap UI",
+			},
+		},
+	},
+	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			-- Better lua vim completions
@@ -7,12 +129,6 @@ return {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
-			"mfussenegger/nvim-dap",
-			{
-				"rcarriga/nvim-dap-ui",
-				dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
-			},
-			"jay-babu/mason-nvim-dap.nvim",
 
 			-- Display lsp logs in fancy output at bottom right
 			{ "j-hui/fidget.nvim", opts = {} },
@@ -170,6 +286,7 @@ return {
 	},
 	{
 		"numToStr/Comment.nvim",
+		cmd = "BufNew",
 		dependencies = {
 			"JoosepAlviste/nvim-ts-context-commentstring",
 		},
@@ -186,7 +303,6 @@ return {
 				},
 			})
 		end,
-		lazy = false,
 	},
 	{
 		"mrcjkb/rustaceanvim",
@@ -252,9 +368,28 @@ return {
 				-- open_cmd = "vsplit",
 			})
 
-			vim.keymap.set("n", "<space>S", '<cmd>lua require("spectre").toggle()<CR>', {
-				desc = "Toggle Spectre",
+			vim.keymap.set("n", "<space>S", require("spectre").toggle, { desc = "Toggle Spectre" })
+			vim.keymap.set("n", "<space>sw", function()
+				require("spectre").open_visual({ select_word = true })
+			end, {
+				desc = "Search current word",
+				buffer = true,
+			})
+			vim.keymap.set("v", "<space>sw", require("spectre").open_visual, {
+				desc = "Search current word",
+				buffer = true,
+			})
+			vim.keymap.set("n", "<space>sp", function()
+				require("spectre").open_file_search({ select_word = true })
+			end, {
+				desc = "Search on current file",
+				buffer = true,
 			})
 		end,
+	},
+	{
+		"echasnovski/mini.ai",
+		cmd = "BufNew",
+		version = "*",
 	},
 }

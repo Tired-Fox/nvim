@@ -16,23 +16,25 @@ return {
 			-- Luasnip completion
 			"saadparwaiz1/cmp_luasnip",
 			-- Database completion
-			{
-				"MattiasMTS/cmp-dbee",
-				-- commit = "0feabc1",
-				dependencies = {
-					{"kndndrj/nvim-dbee"}
-				},
-				config = function()
-					require("cmp-dbee").setup({})
-				end,
-			},
 		},
 		config = function()
 			require("user.completion")
 		end,
 	},
 	{
+		"MattiasMTS/cmp-dbee",
+		-- commit = "0feabc1",
+		dependencies = {
+			"kndndrj/nvim-dbee",
+		},
+		ft = "sql",
+		config = function()
+			require("cmp-dbee").setup({})
+		end,
+	},
+	{
 		"supermaven-inc/supermaven-nvim",
+		cmd = "BufNew",
 		config = function()
 			require("supermaven-nvim").setup({
 				-- These are just here for if inline completion is turned on

@@ -86,7 +86,7 @@ cmp.setup({
 	},
 })
 
--- Setup up vim-dadbod
+-- Setup up dbee
 cmp.setup.filetype({ "sql" }, {
 	sources = {
 		{ name = "cmp-dbee" },
