@@ -220,7 +220,6 @@ return {
 	},
 	{
 		"mrjones2014/smart-splits.nvim",
-		cmd = { "BufNew" },
 		config = function()
 			-- recommended mappings
 			-- resizing splits
