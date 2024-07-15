@@ -34,6 +34,7 @@ return {
 	},
 	{
 		"supermaven-inc/supermaven-nvim",
+		enabled = false,
 		cmd = "BufNew",
 		config = function()
 			require("supermaven-nvim").setup({

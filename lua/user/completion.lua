@@ -20,16 +20,19 @@ local borderstyle = require("user").borderstyle
 local lspkind = require("lspkind")
 local cmp = require("cmp")
 
-require("supermaven-nvim.completion_preview")
-
 local cmp_sources = {
 	{ name = "nvim_lsp" },
 }
 
-if require("supermaven-nvim.config").disable_inline_completion then
-	cmp_sources = merge_lists(cmp_sources, {
-		{ name = "supermaven" },
-	})
+local ok, supermaven = pcall(require, "supermaven-nvim")
+if ok then
+	require("supermaven-nvim.completion_preview")
+
+	if supermaven.config.disable_inline_completion then
+		cmp_sources = merge_lists(cmp_sources, {
+			{ name = "supermaven" },
+		})
+	end
 end
 
 cmp_sources = merge_lists(cmp_sources, {

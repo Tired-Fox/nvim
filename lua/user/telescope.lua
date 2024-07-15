@@ -16,12 +16,24 @@ require("telescope").setup({
 			i = { ["<c-t>"] = open_with_trouble },
 			n = { ["<c-t>"] = open_with_trouble },
 		},
+		-- path_display = { truncate = 13 },
+		-- path_display = { "smart" },
+		path_display = {
+			shorten = {
+				len = 3,
+				exclude = { 1, -1 },
+			},
+		},
 	},
 	extensions = {
 		frecency = {
 			workspaces = {
 				["conf"] = vim.fn.stdpath("config"),
 				["data"] = vim.fn.stdpath("data"),
+			},
+			ignore_patterns = {
+				"*.git/*",
+				"*.git\\*",
 			},
 			db_safe_mode = false,
 			auto_validate = true,
