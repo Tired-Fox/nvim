@@ -12,7 +12,8 @@ local servers = {
 
 	cssls = true,
 	eslint = true,
-	vuels = true,
+	-- vuels = true,
+	volar = true,
 	tsserver = true,
 	jsonls = true,
 	yamlls = true,
