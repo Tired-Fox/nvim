@@ -26,6 +26,9 @@ require("telescope").setup({
 		},
 	},
 	extensions = {
+		["ui-select"] = {
+			require("telescope.themes").get_dropdown({}),
+		},
 		frecency = {
 			workspaces = {
 				["conf"] = vim.fn.stdpath("config"),
@@ -62,8 +65,8 @@ require("telescope").setup({
 	},
 })
 
--- pcall(require("telescope").load_extension, "fzy_native")
 pcall(require("telescope").load_extension, "frecency")
+pcall(require("telescope").load_extension, "ui-select")
 
 local builtin = require("telescope.builtin")
 

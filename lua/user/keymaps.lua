@@ -20,12 +20,12 @@ vim.keymap.set("i", "<A-k>", "<ESC>:m .-2<cr>==gi", { desc = "Move selection dow
 vim.keymap.set("v", ">", ">gv", { desc = "Indent Selection" })
 vim.keymap.set("v", "<", "<gv", { desc = "Dedent Selection" })
 
-vim.keymap.set("n", "<space>q", "<cmd>q<cr>", { desc = "Quit" })
+vim.keymap.set("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit" })
 
 -- Diagnostic keymaps
 -- note: neovim v0.10 these are defaults
 -- vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
 -- vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
 -- note: neovim v0.10 this is defaulted to <c-w>d
-vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-vim.keymap.set("n", "<space>E", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Open diagnostics list" })
+vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+vim.keymap.set("n", "<leader>E", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Open diagnostics list" })

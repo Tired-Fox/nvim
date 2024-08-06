@@ -2,6 +2,7 @@ local mappings = {
 	-- q = { "<cmd>confirm q<CR>", "Quit" },
 	["."] = { "<cmd>nohlsearch<CR>", "NOHL" },
 	d = { name = "Debug" },
+	h = { name = "Hunk" },
 	f = { name = "Find" },
 	g = { name = "Git" },
 	l = { name = "LSP" },
@@ -44,7 +45,8 @@ which_key.setup({
 
 local opts = {
 	mode = "n", -- NORMAL mode
-	prefix = "<space>",
+	prefix = "<leader>",
 }
 
 which_key.register(mappings, opts)
+which_key.register(mappings, { mode = "v", prefix = "<leader>" })

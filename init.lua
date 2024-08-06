@@ -1,6 +1,6 @@
 -- Set keymap leader
 vim.g.maplocalleader = ","
-vim.g.mapleader = ","
+vim.g.mapleader = " "
 
 -- Setup Lazy.nvim for plugins
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

@@ -1,6 +1,6 @@
 local util = require("lspconfig.util")
 
-local global_ts = vim.fn.stdpath("data") .. "mason/packages/typescript-language-server/node_modules/typescript/lib"
+local global_ts = vim.fn.stdpath("data") .. "/mason/packages/typescript-language-server/node_modules/typescript/lib"
 
 --- Get the server path, either a local typescript server path exists or use the defined global
 --- @param root_dir string root directory to search for typescript/lib
@@ -21,6 +21,7 @@ end
 
 return {
 	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
+	root_dir = util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git", "node_modules"),
 	init_options = {
 		typescript = {
 			tsdk = "",
