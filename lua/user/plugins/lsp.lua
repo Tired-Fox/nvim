@@ -13,13 +13,7 @@ return {
 		cmd = { "DapContinue" },
 		config = function()
 			require("user.lsp.dap")
-			-- require("neodev").setup({
-			-- 	library = {
-			-- 		plugins = { "nvim-dap-ui" },
-			-- 		types = true,
-			-- 	},
 		end,
-		-- })
 		keys = {
 			{
 				"<space>dt",
@@ -125,7 +119,6 @@ return {
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			-- Better lua vim completions
-			"folke/neodev.nvim",
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",

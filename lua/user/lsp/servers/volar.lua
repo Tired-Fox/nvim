@@ -1,12 +1,9 @@
 local util = require("lspconfig.util")
 
-local global_ts = ""
-if vim.fn.has("win32") == 1 then
-	global_ts = vim.env.HOME .. "\\AppData\\Local\\Yarn\\Data\\global\\node_modules\\typescript\\lib"
-else
-	global_ts = vim.env.HOME .. "/.config/yarn/global/node_modules/typescript/lib"
-end
+local global_ts = vim.fn.stdpath("data") .. "mason/packages/typescript-language-server/node_modules/typescript/lib"
 
+--- Get the server path, either a local typescript server path exists or use the defined global
+--- @param root_dir string root directory to search for typescript/lib
 local function get_typescript_server_path(root_dir)
 	local found_ts = ""
 	local function check_dir(path)
