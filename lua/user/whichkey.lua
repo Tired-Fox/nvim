@@ -1,12 +1,12 @@
 local mappings = {
 	-- q = { "<cmd>confirm q<CR>", "Quit" },
-	["."] = { "<cmd>nohlsearch<CR>", "NOHL" },
-	d = { name = "Debug" },
-	h = { name = "Hunk" },
-	f = { name = "Find" },
-	g = { name = "Git" },
-	l = { name = "LSP" },
-	t = { name = "Test" },
+	{ "<leader>.", "<cmd>nohlsearch<CR>", desc = "NOHL" },
+	{ "<leader>d>", group = "Debug" },
+	{ "<leader>h", group = "Hunk" },
+	{ "<leader>f", group = "Find" },
+	{ "<leader>g", group = "Git" },
+	{ "<leader>l", group = "LSP" },
+	{ "<leader>t", group = "Test" },
 }
 
 local which_key = require("which-key")
@@ -28,13 +28,13 @@ which_key.setup({
 			g = false,
 		},
 	},
-	window = {
+	win = {
 		border = "rounded",
 		position = "bottom",
 		padding = { 2, 2, 2, 2 },
 	},
 	-- Don't pull in keymaps unless they are registered with which-key
-	ignore_missing = false,
+	-- ignore_missing = false,
 	show_help = false,
 	show_keys = false,
 	disable = {
@@ -48,5 +48,5 @@ local opts = {
 	prefix = "<leader>",
 }
 
-which_key.register(mappings, opts)
-which_key.register(mappings, { mode = "v", prefix = "<leader>" })
+which_key.add(mappings, opts)
+which_key.add(mappings, { mode = "v", prefix = "<leader>" })

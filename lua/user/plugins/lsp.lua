@@ -166,13 +166,13 @@ return {
 					"-Declipse.product=org.eclipse.jdt.ls.core.product",
 					"-Dlog.protocol=true",
 					"-Dlog.level=ALL",
-					"-javaagent:" .. vim.fn.expand("$MASON/share/jdtls/lombok.jar"),
 					"-Xms1g",
 					"--add-modules=ALL-SYSTEM",
 					"--add-opens",
 					"java.base/java.util=ALL-UNNAMED",
 					"--add-opens",
 					"java.base/java.lang=ALL-UNNAMED",
+					"-javaagent:" .. vim.fn.expand("$MASON/share/jdtls/lombok.jar"),
 					"-jar",
 					vim.fn.expand("$MASON/share/jdtls/plugins/org.eclipse.equinox.launcher.jar"),
 					"-configuration",
@@ -189,7 +189,7 @@ return {
 							runtimes = {
 								{
 									name = "JavaSE-1.8",
-									path = "C:\\Java\\jdk-8u161",
+									path = "D:\\scoop\\apps\\openjdk8-redhat\\8u342-b07",
 									default = true,
 								},
 								{
