@@ -189,12 +189,12 @@ return {
 							runtimes = {
 								{
 									name = "JavaSE-1.8",
-									path = "D:\\scoop\\apps\\openjdk8-redhat\\8u342-b07",
+									path = os.getenv("SCOOP") .. "\\apps\\openjdk8-redhat\\current",
 									default = true,
 								},
 								{
 									name = "JavaSE-21",
-									path = "D:\\scoop\\apps\\oraclejdk-lts\\21.0.2",
+									path = os.getenv("SCOOP") .. "\\apps\\oraclejdk-lts\\current",
 								},
 							},
 						},
