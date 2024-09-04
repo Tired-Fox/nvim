@@ -29,24 +29,19 @@ which_key.setup({
 		},
 	},
 	win = {
+		title = false,
 		border = "rounded",
-		position = "bottom",
-		padding = { 2, 2, 2, 2 },
+		padding = { 2, 2 },
 	},
 	-- Don't pull in keymaps unless they are registered with which-key
 	-- ignore_missing = false,
-	show_help = false,
-	show_keys = false,
+	-- show_help = false,
+	-- show_keys = false,
 	disable = {
 		buftypes = {},
 		filetypes = { "TelescopePrompt" },
 	},
 })
 
-local opts = {
-	mode = "n", -- NORMAL mode
-	prefix = "<leader>",
-}
-
-which_key.add(mappings, opts)
-which_key.add(mappings, { mode = "v", prefix = "<leader>" })
+which_key.add({ mappings, mode = "n" })
+which_key.add({ mappings, mode = "v" })
