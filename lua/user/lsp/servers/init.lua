@@ -14,7 +14,7 @@ local servers = {
 	eslint = true,
 	-- vuels = true,
 	volar = true,
-	tsserver = true,
+	ts_ls = true,
 	jsonls = true,
 	yamlls = true,
 	clangd = true,
@@ -47,6 +47,7 @@ local server_configs = {}
 --- Load in configs from other files and append to list of configs
 for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/user/lsp/servers/*.lua", true)) do
 	local name = get_filename(ft_path)
+
 	-- Only load the config if the server is setup to be installed + configured
 	if servers[name] and not vim.tbl_contains(exclude_setup, name) then
 		local ok, config = pcall(require, "user.lsp.servers." .. name)

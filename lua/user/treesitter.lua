@@ -1,4 +1,4 @@
--- On windows the parsers that treesitter generates craches neovim
+-- On windows the parsers that treesitter generates crashes neovim unless the right tooling is installed
 local languages = {
 	"lua",
 	"python",

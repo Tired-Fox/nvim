@@ -1,6 +1,7 @@
 # Neovim Config
 
 - https://github.com/anasrar/nvim-treesitter-parser-bin
+- If using `volar` and `typescript` ensure that `@vue/typescript-plugin` is installed globally
 
 - Install the following
     - Neovim v0.10 with `bob` which can be installed with `packam -S bob`

@@ -155,7 +155,7 @@ return {
 		version = "*",
 		config = function()
 			require("mini.bufremove").setup({})
-			vim.keymap.set("n", "<space>c", function()
+			vim.keymap.set("n", "<leader>q", function()
 				require("mini.bufremove").wipeout(0)
 			end, { desc = "Close Buffer" })
 		end,
@@ -169,6 +169,7 @@ return {
 	},
 	{
 		"folke/which-key.nvim",
+		name = "whichkey",
 		event = "VeryLazy",
 		config = function()
 			require("user.whichkey")

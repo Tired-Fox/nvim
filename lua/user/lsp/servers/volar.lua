@@ -23,6 +23,9 @@ return {
 	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
 	root_dir = util.root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git", "node_modules"),
 	init_options = {
+		vue = {
+			hybridMode = false,
+		},
 		typescript = {
 			tsdk = "",
 		},

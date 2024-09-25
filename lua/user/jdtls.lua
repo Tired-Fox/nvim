@@ -78,7 +78,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 local dap_config_java = {}
-
 local ports_ok, ports = pcall(require, "user.lsp.java_ports")
 if ports_ok then
 	for name, port in pairs(ports) do

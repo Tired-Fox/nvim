@@ -23,7 +23,7 @@ local diagnostics = {
 
 ll.setup({
 	options = {
-		theme = "catppuccin",
+		theme = "auto",
 		icons_enabled = true,
 		-- component_separators = { left = "", right = "" },
 		component_separators = { left = "", right = "" },

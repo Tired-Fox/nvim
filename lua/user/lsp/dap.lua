@@ -1,11 +1,6 @@
 local dap = require("dap")
 local dapui = require("dapui")
 
-local dap_servers = require("user.lsp.servers").dap
-require("mason-nvim-dap").setup({
-	ensure_installed = dap_servers,
-})
-
 --- @diagnostic disable: missing-fields
 dapui.setup({
 	floating = {

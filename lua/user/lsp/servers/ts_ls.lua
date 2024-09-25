@@ -1,6 +1,6 @@
 local lspconfig = require("lspconfig")
 
-local vue_ls_path = "C:\\Users\\zboehm\\AppData\\Local\\Yarn\\Data\\global\\node_modules\\@vue\\language-server"
+local vue_ls_path = vim.fn.stdpath("data") .. "/mason/packages/vue-language-server/node_modules/@vue/language-server"
 
 return {
 	filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
@@ -8,6 +8,7 @@ return {
 	init_options = {
 		plugins = {
 			-- https://github.com/vuejs/language-tools Under `neovim/nvim-lspconfig`. This allows volar to have completion, go to, and more...
+			-- WARNING: Make sure that @vue/typescript-plugin is installed
 			{
 				name = "@vue/typescript-plugin",
 				location = vue_ls_path,

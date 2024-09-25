@@ -43,9 +43,11 @@ cmp_sources = merge_lists(cmp_sources, {
 
 cmp.setup({
 	sources = cmp_sources,
+	--- @diagnostic disable: missing-fields
 	sorting = {
 		priority_weight = 2,
 	},
+	--- @diagnostic disable: missing-fields
 	formatting = {
 		format = lspkind.cmp_format({
 			mode = "symbol_text",
@@ -89,7 +91,7 @@ cmp.setup({
 	},
 })
 
--- Setup up dbee
+-- Setup dbee sql completion
 cmp.setup.filetype({ "sql" }, {
 	sources = {
 		{ name = "cmp-dbee" },

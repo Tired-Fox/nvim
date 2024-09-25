@@ -1,11 +1,9 @@
-local M = {
-	lsp = {},
-}
+local M = {}
 
 M.border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 M.borderstyle = {
 	border = M.border,
-	winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+	-- winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
 }
 
 M.icons = {

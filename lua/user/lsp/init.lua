@@ -1,5 +1,6 @@
 require("user.lsp.diagnostics")
 require("user.lsp.formatting")
+require("user.lsp.dap")
 
 local merge_lists = require("user").merge_lists
 local servers = require("user.lsp.servers")
@@ -33,7 +34,7 @@ require("mason").setup({
 
 -- Install servers and tools that should be installed by default: defined in servers.lua
 require("mason-tool-installer").setup({
-	ensure_installed = merge_lists(servers.language_servers, servers.tools),
+	ensure_installed = merge_lists(servers.language_servers, servers.tools, servers.dap),
 })
 
 -- Setup language servers with their configs

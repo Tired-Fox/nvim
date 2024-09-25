@@ -31,5 +31,5 @@ require("lazy").setup({ import = "user/plugins" }, {
 require("user.options")
 require("user.keymaps")
 require("user.autocmds")
-
-vim.cmd.colorscheme("catppuccin")
+require("user.lsp")
+require("user.colorscheme")
