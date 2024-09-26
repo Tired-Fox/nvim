@@ -141,12 +141,6 @@ return {
 				},
 			})
 
-			vim.keymap.set("n", "]t", function()
-				tc.jump_next({ keywords = { "TODO", "FIX", "TEST" } })
-			end, { desc = "Next Todo" })
-			vim.keymap.set("n", "[t", function()
-				tc.jump_prev({ keywords = { "TODO", "FIX", "TEST" } })
-			end, { desc = "Previous Todo" })
 			vim.keymap.set("n", "<space>ft", "<cmd>TodoTelescope<cr>", { desc = "Todo Telescope" })
 		end,
 	},

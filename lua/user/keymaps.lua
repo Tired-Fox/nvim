@@ -20,6 +20,9 @@ vim.keymap.set("i", "<A-k>", "<ESC>:m .-2<cr>==gi", { desc = "Move selection dow
 vim.keymap.set("v", ">", ">gv", { desc = "Indent Selection" })
 vim.keymap.set("v", "<", "<gv", { desc = "Dedent Selection" })
 
+vim.keymap.set("n", "]t", "<cmd>tabnext<cr>", { desc = "Next Tab" })
+vim.keymap.set("n", "[t", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
+
 -- Diagnostic keymaps
 -- note: neovim v0.10 these are defaults
 -- vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
