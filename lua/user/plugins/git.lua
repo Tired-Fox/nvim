@@ -31,14 +31,14 @@ return {
 	},
 	{
 		"NeogitOrg/neogit",
-		enabled = false,
+		enabled = true,
 		dependencies = {
 			"nvim-lua/plenary.nvim", -- required
 			"sindrets/diffview.nvim", -- optional - Diff integration
 			"telescope",
 		},
 		keys = {
-			{ "<space>g", "<cmd>Neogit<cr>", "Neogit" },
+			{ "<space>g", "<cmd>Neogit kind=auto<cr>", "Neogit" },
 		},
 		config = true,
 	},
