@@ -237,4 +237,16 @@ return {
 			vim.keymap.set("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
 		end,
 	},
+	{
+		"echasnovski/mini.icons",
+		enabled = true,
+		lazy = true,
+		specs = {
+			{ "nvim-tree/nvim-web-devicons", enabled = false, optional = true },
+		},
+		config = function()
+			require("mini.icons").setup({})
+			MiniIcons.mock_nvim_web_devicons()
+		end,
+	},
 }
