@@ -38,7 +38,7 @@ return {
 			"telescope",
 		},
 		keys = {
-			{ "<space>g", "<cmd>Neogit<cr>", "Neogit" },
+			{ "<space>g", "<cmd>Neogit kind=replace<cr>", "Neogit" },
 		},
 		config = true,
 	},
