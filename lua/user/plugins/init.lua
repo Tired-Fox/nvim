@@ -3,14 +3,16 @@
 LAZY_PLUGIN_SPEC = {}
 
 --- @param item string Name/path to the plugin spec file
-local function spec(item)
+function spec(item)
 	table.insert(LAZY_PLUGIN_SPEC, { import = item })
 end
 
 -- [[ Plugin Specs ]]
 
 -- Themes
-spec("user.plugins.catppuccin")
+require("user.plugins.colorschemes")
+-- spec("user.plugins.catppuccin")
+-- spec("user.plugins.onedark")
 
 -- Navigation
 spec("user.plugins.oil")
@@ -31,6 +33,8 @@ spec("user.plugins.dap")
 spec("user.plugins.cmp")
 spec("user.plugins.lazydev")
 spec("user.plugins.jdtls")
+spec("user.plugins.rustaceannvim")
+spec("user.plugins.crates")
 
 spec("user.plugins.pairs")
 spec("user.plugins.comment")

@@ -22,7 +22,7 @@ local configuration = {
 		fileformats = "unix",
 		foldmethod = "expr",
 		foldexpr = "v:lua.vim.treesitter.foldexpr()",
-    foldtext = "v:lua.vim.treesitter.foldtext()",
+		foldtext = "v:lua.vim.treesitter.foldtext()",
 	},
 	-- Like writing `:setglobal`
 	-- go = {},
@@ -72,4 +72,3 @@ for category, cvalue in pairs(configuration) do
 		vim[category][option] = value
 	end
 end
-

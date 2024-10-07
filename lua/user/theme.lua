@@ -1,4 +1,4 @@
-vim.cmd.colorscheme("catppuccin")
+vim.cmd.colorscheme("everforest")
 
 function GetTelescopeHighlights()
 	local colorscheme = vim.g.colors_name
