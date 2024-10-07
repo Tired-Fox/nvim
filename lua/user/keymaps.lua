@@ -1,8 +1,16 @@
 -- [[ Basic Keymaps ]]
 
 -- Set local leader
-vim.api.nvim_set_keymap("", "<LocalLeader>", "<Nop>", { silent = true })
-vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+-- Set leader
+vim.api.nvim_set_keymap("", "<localleader>", "<nop>", { silent = true })
+vim.keymap.set({ "n", "v" }, "<space>", "<nop>", { silent = true })
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+vim.keymap.set("n", "<C-h>", "<C-w>h", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })
 
 -- Remap for dealing with word wrap
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -23,10 +31,6 @@ vim.keymap.set("v", "<", "<gv", { desc = "Dedent Selection" })
 vim.keymap.set("n", "]t", "<cmd>tabnext<cr>", { desc = "Next Tab" })
 vim.keymap.set("n", "[t", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
--- Diagnostic keymaps
--- note: neovim v0.10 these are defaults
--- vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
--- vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
 -- note: neovim v0.10 this is defaulted to <c-w>d
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
 vim.keymap.set("n", "<leader>E", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", { desc = "Open diagnostics list" })

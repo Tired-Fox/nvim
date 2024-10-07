@@ -1,8 +1,7 @@
 -- [[ Configure options ]]
 local configuration = {
 	opt = {
-		-- For better Neorg experience
-		-- foldlevelstart = 99,
+		foldlevelstart = 99,
 		-- conceallevel = 3,
 		-- Alwasy use spaces for tabs
 		expandtab = true,
@@ -19,7 +18,15 @@ local configuration = {
 		swapfile = false,
 		writebackup = false,
 		splitright = true,
+
+		fileformats = "unix",
+		foldmethod = "expr",
+		foldexpr = "v:lua.vim.treesitter.foldexpr()",
+    foldtext = "v:lua.vim.treesitter.foldtext()",
 	},
+	-- Like writing `:setglobal`
+	-- go = {},
+	-- Like writing `:set`
 	o = {
 		cmdheight = 1,
 		-- Set highlight on search
@@ -47,6 +54,7 @@ local configuration = {
 		-- NOTE: You should make sure your terminal supports this
 		termguicolors = true,
 	},
+	-- Window scoped options
 	wo = {
 		-- Make line numbers default
 		number = true,
@@ -54,13 +62,6 @@ local configuration = {
 		signcolumn = "yes",
 	},
 }
-
-vim.cmd("set fileformats+=unix")
-vim.cmd([[
-set foldmethod=expr
-set foldexpr=nvim_treesitter#foldexpr()
-set nofoldenable
-]])
 
 -- [[ Set options ]]
 -- Options are automatically built
@@ -71,3 +72,4 @@ for category, cvalue in pairs(configuration) do
 		vim[category][option] = value
 	end
 end
+

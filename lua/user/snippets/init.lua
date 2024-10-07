@@ -47,5 +47,7 @@ ls.config.set_config({
 })
 
 for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/user/snippets/*.lua", true)) do
-	loadfile(ft_path)()
+	if ft_path:sub(-#"init.lua") ~= "init.lua" then
+		loadfile(ft_path)()
+	end
 end

@@ -1,15 +1,10 @@
-# Neovim Config
+# Nvim Configuration
 
-- https://github.com/anasrar/nvim-treesitter-parser-bin
-- If using `volar` and `typescript` ensure that `@vue/typescript-plugin` is installed globally
+Inspired by [`launch.nvim`](https://github.com/LunarVim/Launch.nvim) with my own twist
 
-- Install the following
-    - Neovim v0.10 with `bob` which can be installed with `packam -S bob`
-    - Have `node`, `go`, `rust`/`cargo`, `zls` installed
-        - `zls` with `zvm`
-        - `node` with `fnm`
-    - [fzf](https://github.com/junegunn/fzf)
-    - `cargo install` packages
-        - ripgrep
-        - fd-find
+If using `volar` and `typescript` ensure that `@vue/typescript-plugin` is installed globally
 
+
+## References
+
+- Treesitter precompiled parsers: https://github.com/anasrar/nvim-treesitter-parser-bin

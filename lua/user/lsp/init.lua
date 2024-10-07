@@ -1,18 +1,34 @@
-require("user.lsp.diagnostics")
-require("user.lsp.formatting")
-require("user.lsp.dap")
+--- [[ Diagnostics ]]
+local border = require("user.border")
+local icons = require("user.icons")
 
-local merge_lists = require("user").merge_lists
-local servers = require("user.lsp.servers")
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
 
-local capabilities = nil
-if pcall(require, "cmp_nvim_lsp") then
-	capabilities = require("cmp_nvim_lsp").default_capabilities()
-end
+-- Change diagnostic symbols
+vim.diagnostic.config({
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = icons.diagnostic.BoldError,
+			[vim.diagnostic.severity.WARN] = icons.diagnostic.BoldWarning,
+			[vim.diagnostic.severity.HINT] = icons.diagnostic.BoldHint,
+			[vim.diagnostic.severity.INFO] = icons.diagnostic.BoldInformation,
+		},
+	},
+	virtual_text = false,
+	update_in_insert = false,
+	underline = true,
+	severity_sort = true,
+	float = {
+		focusable = true,
+		style = "minimal",
+		border = "rounded",
+		header = "",
+		prefix = "",
+	},
+})
 
-local lspconfig = require("lspconfig")
-
--- Setup lspconfig ui to use rounded borders
+--- [[ Mason and Lspconfig ]]
 local lspui_ok, lspui = pcall(require, "lspconfig.ui.windows")
 if lspui_ok then
 	lspui.default_options.border = "rounded"
@@ -32,30 +48,9 @@ require("mason").setup({
 	},
 })
 
--- Install servers and tools that should be installed by default: defined in servers.lua
-require("mason-tool-installer").setup({
-	ensure_installed = merge_lists(servers.language_servers, servers.tools, servers.dap),
-})
+require("user.lsp.servers"):setup()
 
--- Setup language servers with their configs
-for _, name in ipairs(merge_lists(servers.language_servers, servers.setup_no_install)) do
-	local config = {
-		capabilities = capabilities,
-	}
-
-	if servers.configs[name] ~= nil then
-		config = vim.tbl_deep_extend("force", {}, config, servers.configs[name])
-	end
-
-	if not vim.tbl_contains(servers.exclude_setup, function(v)
-		return v == name
-	end, { predicate = true }) then
-		lspconfig[name].setup(config)
-	end
-end
-
--- Setup InlayHints
-
+--- [[ LspAttach ]]
 --- @class table<K, V>: { [K]: Options }
 local defaults_by_filetype = {
 	rust = {
