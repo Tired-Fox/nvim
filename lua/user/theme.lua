@@ -53,6 +53,23 @@ function GetTelescopeHighlights()
 			TelescopeResultsTitle = { fg = colors.bg_dim },
 			TelescopePreviewTitle = { bg = colors.aqua, fg = colors.bg_dim },
 		}
+	elseif string.sub(colorscheme, 1, 6) == "vscode" then
+		local c = require("vscode.colors").get_colors()
+		return {
+			TelescopeMatching = { fg = c.vscDarkYellow },
+			TelescopeSelection = { fg = c.vscFront, bg = c.vscBack },
+
+			TelescopePromptPrefix = { bg = c.vscLeftMid },
+			TelescopePromptNormal = { bg = c.vscLeftMid },
+			TelescopeResultsNormal = { bg = c.vscLeftDark },
+			TelescopePreviewNormal = { bg = c.vscLeftDark },
+			TelescopePromptBorder = { bg = c.vscLeftMid, fg = c.vscLeftMid },
+			TelescopeResultsBorder = { bg = c.vscLeftDark, fg = c.vscLeftDark },
+			TelescopePreviewBorder = { bg = c.vscLeftDark, fg = c.vscLeftDark },
+			TelescopePromptTitle = { bg = c.vscBlue, fg = c.vscLeftDark },
+			TelescopeResultsTitle = { fg = c.vscLeftDark },
+			TelescopePreviewTitle = { bg = c.vscDarkYellow, fg = c.vscLeftDark },
+		}
 	else
 		return {}
 	end

@@ -19,7 +19,7 @@ local configuration = {
 		writebackup = false,
 		splitright = true,
 
-		fileformats = "unix",
+		fileformat = "unix",
 		foldmethod = "expr",
 		foldexpr = "v:lua.vim.treesitter.foldexpr()",
 		foldtext = "v:lua.vim.treesitter.foldtext()",
