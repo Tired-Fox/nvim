@@ -1,7 +1,11 @@
 -- [[ Configure options ]]
 local configuration = {
 	opt = {
+		foldcolumn = "1", -- '0' is not bad
+		foldlevel = 99, -- Using ufo provider need a large value, feel free to decrease the value
 		foldlevelstart = 99,
+		foldenable = true,
+		fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]],
 		-- conceallevel = 3,
 		-- Alwasy use spaces for tabs
 		expandtab = true,

@@ -202,7 +202,7 @@ local M = {
 		})
 
 		local ports = {}
-		local ports_ok, dap_config_java = pcall(require, "user.lsp.java_ports")
+		local ports_ok, dap_config_java = pcall(require, "user.java_ports")
 		if ports_ok then
 			for name, port in pairs(dap_config_java) do
 				ports[name] = {

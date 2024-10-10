@@ -93,15 +93,15 @@ end
 function config.servers:setup()
 	for server, state in pairs(self) do
 		if server ~= "__config" and (state == true or state == "setup") then
-			local config = {
+			local conf = {
 				capabilities = capabilities,
 			}
 
 			if self.__config[server] then
-				config = vim.tbl_deep_extend("force", {}, config, self.__config[server])
+				conf = vim.tbl_deep_extend("force", {}, conf, self.__config[server])
 			end
 
-			lspconfig[server].setup(config)
+			lspconfig[server].setup(conf)
 		end
 	end
 end
