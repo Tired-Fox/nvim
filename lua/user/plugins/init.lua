@@ -47,6 +47,7 @@ spec("user.plugins.bufremove")
 spec("user.plugins.pqf")
 spec("user.plugins.lualine")
 spec("user.plugins.ufo")
+spec("user.plugins.abolish")
 
 -- Git
 spec("user.plugins.gitsigns")

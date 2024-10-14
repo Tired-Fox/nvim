@@ -144,6 +144,13 @@ function M.config()
 				position = "left",
 				size = 40,
 			},
+			{
+				elements = {
+					"repl",
+				},
+				position = "bottom",
+				size = 0.25,
+			},
 		},
 	})
 	--- @diagnostic enable: missing-fields
