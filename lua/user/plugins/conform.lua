@@ -49,6 +49,8 @@ function M.config()
 		end
 		require("conform").format({ async = true, lsp_format = "fallback", range = range })
 	end, { range = true })
+
+	vim.keymap.set("n", "<leader>lf", "<cmd>Format<cr>", { desc = "Format" })
 end
 
 return M
