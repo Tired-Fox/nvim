@@ -22,6 +22,7 @@ function M.config()
 			if
 				vim.g.disable_autoformat
 				or vim.b[bufnr].disable_autoformat
+				or not formatters[vim.bo[bufnr].filetype]
 				or vim.tbl_contains(ignore, vim.bo[bufnr].filetype)
 			then
 				return
