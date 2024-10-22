@@ -8,6 +8,8 @@ function M.config()
 	local mappings = {
 		{ "<space>.", "<cmd>nohlsearch<CR>", desc = "NOHL" },
 		{ "<space>d", group = "Debug" },
+		{ "<space>lD", group = "Diagnostics (Workspace)" },
+		{ "<space>ld", group = "Diagnostics (Buffer)" },
 		{ "<space>h", group = "Harpoon" },
 		{ "<space>f", group = "Find" },
 		{ "<space>g", group = "Git" },

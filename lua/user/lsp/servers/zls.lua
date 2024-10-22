@@ -1,9 +1,9 @@
 return {
 	settings = {
 		zls = {
-			path = "C:/Users/zboehm/scoop/shims",
+			path = "C:/Users/dorkd/.zvm/bin/",
 			Zls = {
-				path = "C:/Users/zboehm/scoop/shims",
+				path = "C:/Users/dorkd/.zvm/bin/",
 				enableAutofix = true,
 				enable_snippets = true,
 				enable_ast_check_diagnostics = true,
