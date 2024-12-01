@@ -46,6 +46,7 @@ spec("plugins.lazydev")
 spec("plugins.rustacean")
 spec("plugins.crates")
 spec("plugins.jdtls")
+spec("plugins.nuxt_goto")
 
 spec("plugins.ufo")
 spec("plugins.lualine")
