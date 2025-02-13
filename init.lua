@@ -1,66 +1,56 @@
--- Set local leader
--- Set leader
-vim.api.nvim_set_keymap("", "<localleader>", "<nop>", { silent = true })
-vim.keymap.set({ "n", "v" }, "<space>", "<nop>", { silent = true })
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+-- Set <space> as the leader key
+-- See `:help mapleader`
+--  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
---- Global LAZY_PLUGIN_SPEC to add plugins too.
---- NOTE: All plugins should be added prior to initializing lazy.nvim
-LAZY_PLUGIN_SPEC = {
-	{ "echasnovski/mini.icons", version = "*", name = "mini.icons", opts = {} },
-	"nvim-lua/plenary.nvim",
-	"tpope/vim-sleuth",
-	"tpope/vim-abolish",
+-- Set to true if you have a Nerd Font installed and selected in the terminal
+vim.g.have_nerd_font = true
+
+require 'user.options'
+require 'user.keymaps'
+require 'user.autocommands'
+
+-- [[ Install `lazy.nvim` plugin manager ]]
+--    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
+local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
+  local out = vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
+  if vim.v.shell_error ~= 0 then
+    error('Error cloning lazy.nvim:\n' .. out)
+  end
+end ---@diagnostic disable-next-line: undefined-field
+vim.opt.rtp:prepend(lazypath)
+
+-- [[ Configure and install plugins ]]
+require('lazy').setup {
+  spec = 'plugins',
+  concurrency = 4,
+  rocks = { hererocks = true },
+  change_detection = {
+    notify = false,
+  },
+  ui = {
+    -- If you are using a Nerd Font: set icons to an empty table which will use the
+    -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
+    icons = vim.g.have_nerd_font and {} or {
+      cmd = '⌘',
+      config = '🛠',
+      event = '📅',
+      ft = '📂',
+      init = '⚙',
+      keys = '🗝',
+      plugin = '🔌',
+      runtime = '💻',
+      require = '🌙',
+      source = '📄',
+      start = '🚀',
+      task = '📌',
+      lazy = '💤 ',
+    },
+  },
 }
 
---- @param item string Name/path to the plugin spec file
-local function spec(item)
-	table.insert(LAZY_PLUGIN_SPEC, { import = item })
-end
-
--- Load configurations
-require("user.options")
-require("user.keymaps")
-require("user.autocmds")
-
-spec("plugins.catppuccin")
-spec("plugins.oil")
-spec("plugins.pairs")
-spec("plugins.telescope")
-spec("plugins.buffer_manager")
-spec("plugins.harpoon")
-spec("plugins.splits")
-spec("plugins.trouble")
-
-spec("plugins.treesitter")
-spec("plugins.treesitter_context")
-spec("plugins.autotag")
-spec("plugins.mason")
-spec("plugins.lspconfig")
-spec("plugins.cmp")
-spec("plugins.dap")
-spec("plugins.conform")
-
-spec("plugins.lazydev")
-spec("plugins.rustacean")
-spec("plugins.crates")
-spec("plugins.jdtls")
-spec("plugins.nuxt_goto")
-
-spec("plugins.ufo")
-spec("plugins.lualine")
-spec("plugins.pqf")
-spec("plugins.blankline")
-spec("plugins.whichkey")
-spec("plugins.todo")
-
-spec("plugins.neogit")
-spec("plugins.diffview")
-spec("plugins.gitsigns")
-
-spec("plugins.toggleterm")
--- TODO: DBee
-
--- Bootstrap and load plugins
-require("user.lazy")
+-- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et

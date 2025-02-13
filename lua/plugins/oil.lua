@@ -1,19 +1,15 @@
 local M = {
   'stevearc/oil.nvim',
+  -- Optional dependencies
   dependencies = {
-    "mini.icons",
-  }
+    { 'echasnovski/mini.icons', opts = {} },
+  },
 }
 
 function M.config()
-  require('oil').setup({
-    columns = {
-      "icon",
-      "permissions",
-    }
-  })
+  require('oil').setup {}
 
-  vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Oil" })
+  vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
 end
 
 return M
